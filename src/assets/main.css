@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+  }
+}
+
+@layer components {
+  /* Bento card base */
+  .bento {
+    @apply rounded-3xl overflow-hidden relative;
+  }
+  .bento-white {
+    @apply bento bg-white text-dark;
+  }
+  .bento-red {
+    @apply bento bg-red-600 text-white;
+  }
+  .bento-dark {
+    @apply bento bg-dark-card text-white border border-white/10;
+  }
+  .bento-muted {
+    @apply bento bg-dark-muted text-white border border-white/5;
+  }
+
+  /* Skill badge pill */
+  .skill-pill {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium;
+  }
+  .skill-pill-offer {
+    @apply skill-pill bg-red-600 text-white;
+  }
+  .skill-pill-want {
+    @apply skill-pill bg-white/10 text-white border border-white/20;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply px-6 py-3 bg-red-600 text-white rounded-2xl font-semibold font-body
+           hover:bg-red-700 active:scale-95 transition-all duration-150;
+  }
+  .btn-ghost {
+    @apply px-6 py-3 bg-white/10 text-white rounded-2xl font-semibold font-body
+           hover:bg-white/20 active:scale-95 transition-all duration-150;
+  }
+  .btn-white {
+    @apply px-6 py-3 bg-white text-dark rounded-2xl font-semibold font-body
+           hover:bg-red-50 active:scale-95 transition-all duration-150;
+  }
+
+  /* Input */
+  .input {
+    @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-2xl text-white
+           placeholder-white/30 focus:outline-none focus:border-red-500 focus:ring-1
+           focus:ring-red-500 transition-colors;
+  }
+  .input-light {
+    @apply w-full px-4 py-3 bg-dark-muted border border-white/10 rounded-2xl text-white
+           placeholder-white/30 focus:outline-none focus:border-red-500 transition-colors;
+  }
+
+  /* XP Bar */
+  .xp-bar {
+    @apply h-2 bg-white/10 rounded-full overflow-hidden;
+  }
+  .xp-fill {
+    @apply h-full bg-red-500 rounded-full transition-all duration-700;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .font-display  { font-family: 'Bricolage Grotesque', sans-serif; }
+  .font-body     { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  /* Noise texture overlay */
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
+
+/* Vue transition */
+.page-enter-active, .page-leave-active { transition: opacity 0.2s, transform 0.2s; }
+.page-enter-from { opacity: 0; transform: translateY(8px); }
+.page-leave-to   { opacity: 0; transform: translateY(-8px); }
+
+/* Toastification override */
+.Vue-Toastification__container { font-family: 'Plus Jakarta Sans', sans-serif !important; }
